@@ -59,7 +59,7 @@ async function interval(resolve, reject) {
 
         console.log("Dolar: ", dolar)
 
-        let FETUSDT = (await binance('["FETUSDT"]'))[0];
+        let [BTCUSDT, FETUSDT] = (await binance('["FETUSDT","BTCUSDT"]'));
 
         let FET = {
             birim: "FET",
@@ -67,6 +67,13 @@ async function interval(resolve, reject) {
             satis: Number((FETUSDT.satis * dolar.satis).toFixed(2)),
         }
         console.log("FET: ", FET)
+
+        let BTC = {
+            birim: "BTC",
+            alis: Number((BTCUSDT.alis * dolar.alis).toFixed(2)),
+            satis: Number((BTCUSDT.satis * dolar.satis).toFixed(2)),
+        }
+        console.log("BTC: ", BTC)
 
         let GSRAY = await hisse("GSRAY");
         console.log("GSRAY: ", GSRAY)
@@ -87,7 +94,7 @@ async function interval(resolve, reject) {
             TCELL
         ]
 
-        api = [dolar, ...borsaIstanbul, FET]
+        api = [dolar, ...borsaIstanbul, FET, BTC]
 
     } catch (error) {
         console.warn(error)
