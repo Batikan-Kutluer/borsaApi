@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 let express = require("express");
 let app = express();
 let http = require("http").createServer(app);
@@ -6,7 +8,7 @@ const fetch = require('isomorphic-unfetch')
 
 let api = []
 
-let waitTime = 20;
+let waitTime = process.env.time || 20;
 
 let turkBorsasi = async () => await ((await fetch("https://api.genelpara.com/embed/borsa.json")).json());
 
