@@ -114,4 +114,4 @@ async function start() {
 
 start();
 
-http.listen(80)
+http.listen(process.env.PORT || 80)
