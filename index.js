@@ -100,6 +100,8 @@ async function interval(resolve, reject) {
 
     } catch (error) {
         console.warn(error)
+        console.warn("Error occured. Started cooldown...")
+        await sleep(20 * 60 * 1000);
     }
 
     console.log(`Api: `, api)
