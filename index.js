@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
     for (a in api) { _api.push(api[a]) }
 
-    res.send({ data: api })
+    res.send({ data: _api })
 })
 
 let fix = (num) => Number(String(num).match(/.+\.../) + "") || num
