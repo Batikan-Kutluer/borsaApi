@@ -45,7 +45,8 @@ hisse("FX:USDTRY", (data) => {
     api["USD"] = {
         birim: "USD",
         alis: fix(data.open),
-        satis: fix(data.close)
+        satis: fix(data.close),
+        toplam: fix(290 * data.close)
     }
 })
 
@@ -55,7 +56,8 @@ hisse("BINANCE:FETUSDT", (data) => {
     api["FET"] = {
         birim: "FET",
         alis: fix(data.open * dolar),
-        satis: fix(data.close * dolar)
+        satis: fix(data.close * dolar),
+        toplam: fix(0 * data.close)
     }
 })
 
@@ -63,7 +65,8 @@ hisse("BINANCE:BTCTRY", (data) => {
     api["BTC"] = {
         birim: "BTC",
         alis: data.open,
-        satis: data.close
+        satis: data.close,
+        toplam: fix(0.02449323 * data.close)
     }
 })
 
@@ -71,10 +74,28 @@ let hisseList = ["GSRAY", "BJKAS", "TTKOM", "TCELL"];
 
 hisseList.forEach((item) => {
     hisse(item, (data) => {
+        let tutar = 0;
+
+        switch (item) {
+            case "GSRAY":
+                tutar = 902;
+                break
+            case "BJKAS":
+                tutar = 943;
+                break
+            case "TTKOM":
+                tutar = 196;
+                break
+            case "TCELL":
+                tutar = 165;
+                break
+        }
+
         api[item] = {
             birim: item,
             alis: fix(data.open),
-            satis: fix(data.close)
+            satis: fix(data.close),
+            toplam: fix(tutar * data.close)
         }
     })
 })
