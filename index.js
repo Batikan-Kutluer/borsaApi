@@ -63,10 +63,10 @@ hisse("BINANCE:FETUSDT", (data) => {
 
     api[birim] = {
         birim: birim,
-        alis: data.open,
-        satis: data.close,
+        alis: fix(dolar * data.open),
+        satis: fix(dolar * data.close),
         adet: adet[birim],
-        toplam: fix(adet[birim] * data.close)
+        toplam: fix(adet[birim] * dolar * data.close)
     }
 })
 
