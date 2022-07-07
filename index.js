@@ -56,15 +56,17 @@ hisse("FX:USDTRY", (data) => {
     }
 })
 
-hisse("BINANCE:FETUSDT*BINANCE:USDTTRY", (data) => {
+hisse("BINANCE:FETUSDT", (data) => {
+    if (dolar == 0) return;
+
     let birim = "FET";
 
     api[birim] = {
         birim: birim,
-        alis: data.open,
-        satis: data.close,
+        alis: fix(dolar * data.open),
+        satis: fix(dolar * data.close),
         adet: adet[birim],
-        toplam: fix(adet[birim] * data.close)
+        toplam: fix(adet[birim] * dolar * data.close)
     }
 })
 
